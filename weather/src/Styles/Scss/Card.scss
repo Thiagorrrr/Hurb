@@ -16,6 +16,7 @@
     &__text-box {
         color: $color-white;
     }
+
     &__today {
         padding-bottom: rem(20);
     }
@@ -25,6 +26,15 @@
     &__status-info,
     &__status-air {
         display: block;
+        font-weight: bold;
+        padding-bottom: rem(5);
+    }
+    &__status-info
+    &__status-air {   
+        padding: rem(1);
+    }
+    &__status-info {
+        font-size: rem(20);
     }
     &__today-info {
         text-transform: uppercase;
@@ -52,7 +62,7 @@
         }
         
     }
-    &--sunny {
+    &--normal {
         .card__content-info {
             background-color: $color-yellow-light;
         }
@@ -68,6 +78,23 @@
             content: 'B'; 
         }
     }
+    &--sunny {
+        .card__content-info {
+            background-color: $color-red-light;
+        }
+        .card__box--tomorrow {
+            background-color: $color-red-medium;
+        }
+        .card__box--after{
+            background-color: $color-red-dark;
+        }
+        .card__icon:before {
+            color: $color-white;
+            font-family: 'MeteoconsRegular';
+            content: 'B'; 
+        }
+    }
+
     &--cold {
         .card__content-info {
             background-color: $color-blue-light;
