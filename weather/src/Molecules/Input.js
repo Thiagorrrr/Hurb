@@ -1,23 +1,29 @@
-import React, { useState, useRef} from 'react';
+import React, { useState, useContext, useRef } from 'react';
+import { ThemeContext } from '../Molecules/ThemeContext'
 import debounce from "lodash.debounce";
 
-const sendQuery = (query) => console.log(`Querying for ${query}`);
+function Input({ cityName }) {
+  const [inputCity, setInputCity] = useState("");
+  const sendValue = (value) => setInputCity(value);
+  const [inputValue, setInputValue] = useState("");
 
-function Input({cityName}) {
-    const [userQuery, setUserQuery] = useState("");
-    const delayedQuery = useRef(debounce(q => sendQuery(q), 500)).current;
-    const onChange = e => {
-      setUserQuery(e.target.value);
-      delayedQuery(e.target.value);
-    };
+  // debounce input
+  const delayedValue = useRef(debounce(value => sendValue(value), 500)).current;
+  const onChange = e => {
+    setInputValue(e.target.value);
+    delayedValue(e.target.value);
+  };
+  const { ChangeCity } = useContext(ThemeContext);
 
   return (
-    <>  
-        <div className="input__city-info">
-            <span className="input__city-icon"> </span> {cityName}
-            <input type="text" placeholder="Nome da cidade" onChange={onChange}  value={userQuery}/>      
-        </div>    
-    </>
+    <div className="input__city-info">
+      <span className="input__city-icon"> </span> {cityName}
+      <input type="text" placeholder="Nome da cidade" onChange={onChange} value={inputValue} />
+      <button
+        onClick={() => ChangeCity(inputCity)}>
+        Enviar
+        </button>
+    </div>
   )
 }
 

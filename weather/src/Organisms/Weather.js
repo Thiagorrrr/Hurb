@@ -3,12 +3,12 @@ import { ThemeContext, themes } from '../Molecules/ThemeContext';
 import Card from '../Molecules/Card';
 
 function Weather() {
-    const [data, setData] = useState([]);
     const [dataWeather, setDataWeather] = useState([]);
     const [theme, setTheme] = useState('');
     const [city, setCity] = useState('');
-    const [temp, setTemp] = useState(0);
+    const [temp, setTemp] = useState('');
     const [units, setUnits] = useState('metric');
+    const [whitchUnit, setwhitchUnit] = useState('');
     const [hasError, setHasError] = useState(false);
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
@@ -18,7 +18,7 @@ function Weather() {
 
 
     useEffect(() => {
-
+        // Get Geo Cordenates API
         const GetGeoCordenates = () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(PositionCoords);
@@ -37,10 +37,7 @@ function Weather() {
 
             fetch(url)
                 .then(response => response.json())
-                .then(data => {
-                    setData(data)
-                    setCity(data?.results[0]?.components?.city)
-                })
+                .then(data => setCity(data?.results[0]?.components?.city))
                 .catch(err => setHasError(true))
         }
 
@@ -48,6 +45,7 @@ function Weather() {
 
 
     useEffect(() => {
+        // Get Collect Weather Info API
         const urlWeather = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${units}&cnt=3&lang=pt_br&appid=${APPID}`;
         console.log(urlWeather, 'url final');
 
@@ -67,31 +65,43 @@ function Weather() {
     }, [city, units])
 
     useEffect(()=>{
-        if (city ==='') setTheme(ThemeContext._currentValue)
-
         // format for more legibility, set theme main
-        if ( temp <= 15 ) {
-            setTheme(themes.cold);
-        }else if (temp >=35) {
-            setTheme(themes.sunny);
-        }else {
-            setTheme(themes.normal);
+        if (temp === '') {
+            setTheme(ThemeContext._currentValue)
+        } else {
+            if ( temp <= 15 ) {
+                setTheme(themes.cold);
+            }else if (temp >=35) {
+                setTheme(themes.sunny);
+            }else {
+                setTheme(themes.normal);
+            }
         }
         
         
-    }, [city, temp])
+    }, [temp])
 
-    console.log(temp,'city');
+    // change city parameters api
+    const ChangeCity = (value)=>  {
+        setCity(value);
+    }
+
+    // change units parameters api
+    const ChangeMeters = (value)=> {
+        setUnits(value);
+        units === 'metric' ? setwhitchUnit('C') : setwhitchUnit('F');
+    }
+    
     
 
     return (
-        <ThemeContext.Provider value={theme}>
+        <ThemeContext.Provider value={{theme, ChangeCity, ChangeMeters, whitchUnit}}>
             <div className='weather'>
                 <div className="weather__wrapper">
                     {
                         !hasError?
                             <Card 
-                                cityName={dataWeather?.city?.name || 'rio de janeiro'}
+                                cityName={dataWeather?.city?.name}
                                 list={dataWeather?.list || ''}
                             />
                             :
