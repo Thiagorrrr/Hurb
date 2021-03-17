@@ -4,8 +4,11 @@
 
     &__content-info {
         display: flex;
-        align-items: center;
         padding: rem(20);
+
+        @media #{$global-break-md} {
+            align-items: center;
+        }
     }
     &__text-box,
     &__icon {
@@ -34,15 +37,29 @@
         padding: rem(1);
     }
     &__status-info {
-        font-size: rem(20);
+        font-size: rem(16);
+        @media #{$global-break-md}{
+            font-size: rem(20);
+        }
     }
     &__today-info {
         text-transform: uppercase;
         font-weight: bold;
-        font-size: rem(20);
+        font-size: rem(16);
+
+        @media #{$global-break-md}{
+            font-size: rem(20);
+        }
     }
     &__icon {
-        font-size: rem(200);
+        font-size: rem(120);
+        margin: 0 auto;
+
+        @media #{$global-break-md}{
+            font-size: rem(200);
+            margin: 0;
+        }
+
     }
 
     &--noInfo {
@@ -130,7 +147,11 @@
         align-items: center;
         background-color: $color-grey-lighter;
         padding: rem(20);
-        font-size: rem(20);
+        font-size: rem(16);
+
+        @media #{$global-break-md}{
+            font-size: rem(20);
+        }
     }
 
     &__city-icon:before {

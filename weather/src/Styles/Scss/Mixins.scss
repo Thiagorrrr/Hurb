@@ -25,7 +25,8 @@ $color-red-medium: #d32f2f;
 $color-red-light: rgba(229, 57, 53, 0.7);
 
 
-
+//BREAKPOINT
+$global-break-md: "screen and (min-width: 768px)";
 
 //px to rem
 @function strip-units($value) {

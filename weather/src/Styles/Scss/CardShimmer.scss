@@ -48,8 +48,13 @@
         font-size: rem(20);
     }
     &__icon {
-        height: rem(200);
-        width: rem(200);
+        height: rem(100);
+        width: rem(100);
+        
+        @media #{$global-break-md}{
+            height: rem(200);
+            width: rem(200);
+        }
     }
 
     &__box {
