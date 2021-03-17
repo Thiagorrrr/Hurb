@@ -105,8 +105,6 @@ function Weather() {
             }
         }
 
-
-
     }, [temp, whitchUnit])
 
     // change city parameters api
@@ -122,13 +120,8 @@ function Weather() {
         }else {
             setUnits('metric');
             setwhitchUnit('celsius')
-        }
-        
+        }   
     }
-
-    console.log(whitchUnit,'dsdsdsdsd');
-
-
 
     return (
         <ThemeContext.Provider value={{ theme, ChangeCity, ChangeMeters, whitchUnit }}>
