@@ -21,11 +21,14 @@ function Weather() {
     const APPID = '7ba73e0eb8efe773ed08bfd0627f07b8';
 
 
+                
+
+
     useEffect(() => {
         // Get Geo Cordenates API
         const GetGeoCordenates = () => {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(PositionCoords);
+                navigator.geolocation.getCurrentPosition(PositionCoords, GetErroFallBackHttp, { timeout: 1000 });
             }
         }
 
@@ -33,6 +36,11 @@ function Weather() {
             setLatitude(position.coords.latitude);
             setLongitude(position.coords.longitude);
         })
+
+        const GetErroFallBackHttp = () => {
+            // Get latitude, longitude when error getCurrentPosition set on http
+            setCity('rio de janeiro')
+        }
 
         GetGeoCordenates();
 
@@ -72,14 +80,15 @@ function Weather() {
                     })
                     .catch(err => {
                         setHasErrorWeather(true)
+                        setCity('cidade não encontrada!')
                         setLoading(false)
-                        console.log(err,'error')
+                        console.log(err, 'error')
                     })
             }
             CollectWeatherInfo();
         }
 
-    }, [city, units,setLoading])
+    }, [city, units, setLoading])
 
     useEffect(() => {
         // format for more legibility, set theme main
@@ -94,7 +103,7 @@ function Weather() {
             }
         };
 
-        if (temp === '') {
+        if (hasErrorWeather || temp === '') {
             setTheme(ThemeContext._currentValue)
         } else {
             if (temp <= parametersUnits[whitchUnit].cold) {
@@ -106,7 +115,7 @@ function Weather() {
             }
         }
 
-    }, [temp, whitchUnit])
+    }, [temp, whitchUnit, hasErrorWeather])
 
     // change city parameters api
     const ChangeCity = (value) => {
@@ -118,10 +127,10 @@ function Weather() {
         if (units === 'metric') {
             setUnits('imperial');
             setwhitchUnit('fahrenheit');
-        }else {
+        } else {
             setUnits('metric');
             setwhitchUnit('celsius')
-        }   
+        }
     }
 
     return (
@@ -134,8 +143,8 @@ function Weather() {
                             !loading ?
                                 <Card
                                     list={dataWeather?.list || ''}
-                                /> 
-                            : <CardShimmer/>
+                                />
+                                : <CardShimmer />
                         }
                     </>
                 </div>
