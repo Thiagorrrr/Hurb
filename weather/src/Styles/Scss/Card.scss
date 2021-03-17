@@ -120,4 +120,42 @@
     &__box-wrapper{
         width: 50%;
     }
+
+    &__city-info {
+        display: flex;
+        align-items: center;
+        background-color: $color-grey-lighter;
+        padding: rem(20);
+        font-size: rem(20);
+    }
+
+    &__city-icon:before {
+        font-size: rem(30);
+        margin-right: rem(10);
+        color: $color-grey-dark;
+        font-family: 'MeteoconsRegular';
+        content: '(';
+    }
+    &__celsius,
+    &__fahrenheit {
+        font-size: rem(12);
+        font-weight: normal;
+    }
+
+    &__meters {
+        cursor: pointer;
+        margin-left: rem(5);
+        &--celsius {
+            .card__celsius {
+                font-size: rem(20);
+                font-weight: bold;
+            }
+        }
+        &--fahrenheit {
+            .card__fahrenheit {
+                font-size: rem(20);
+                font-weight: bold;
+            }
+        }
+    } 
 }

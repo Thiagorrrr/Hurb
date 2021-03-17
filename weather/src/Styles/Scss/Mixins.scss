@@ -478,3 +478,34 @@ td,
 th {
   padding: 0;
 }
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: $color-white;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+ color: $color-white;
+ opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+ color: $color-white;
+ opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: $color-white;
+}
+
+// shimmer animate 
+.animate {
+  animation : shimmer 2s infinite linear;
+  background: linear-gradient(to right, #eff1f3 4%, #e2e2e2 36%, #eff1f3 100%);
+  background-size: 1000px 100%;
+}
+@keyframes shimmer {
+  0% {
+      background-position: -1000px 0;
+  }
+
+  100% {
+      background-position: 1000px 0;
+  }
+}

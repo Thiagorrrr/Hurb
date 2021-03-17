@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../Molecules/ThemeContext'
-import Input from '../Molecules/Input';
 
 function Card( {cityName, list}) {
     const { theme, ChangeMeters, whitchUnit } = useContext(ThemeContext);
@@ -16,15 +15,18 @@ function Card( {cityName, list}) {
     return (
         <div className={`card card--${theme}`}>
             <div className="card__wrapper">
-                <Input
-                    cityName={cityName}
-                />
+                <div className="card__city-info">
+                    <span className="card__city-icon"> </span> {cityName}
+                </div>
                 <div className="card__content-info">
                     <div className="card__icon"></div>
                     <div className="card__text-box">
                         <div className="card__today">
                             <span className="card__today-info">Hoje </span>
-                            <span className="card__today-info">{Math.ceil(listProps.temp)}° <span onClick={() => ChangeMeters('imperial')}>{whitchUnit}</span>
+                            <span className="card__today-info">{Math.ceil(listProps.temp)} 
+                                <span className={`card__meters card__meters--${whitchUnit}`} onClick={() => ChangeMeters()}> 
+                                <span className="card__celsius"> °C</span> | <span className="card__fahrenheit" >°F</span> 
+                            </span>
                             </span>
                         </div>
                         <div className="card__status-box">
@@ -38,13 +40,21 @@ function Card( {cityName, list}) {
                 <div className="card__box card__box--tomorrow">
                     <div className="card__box-wrapper">
                         <span className="card__box-info">Amanhã </span>
-                        <span className="card__box-info">{Math.ceil(listProps.temp1)}° <span onClick={() => ChangeMeters('imperial')} >{whitchUnit}</span></span>
+                        <span className="card__box-info">{Math.ceil(listProps.temp1)}° 
+                            <span className={`card__meters card__meters--${whitchUnit}`} onClick={() => ChangeMeters()}> 
+                                <span className="card__celsius"> °C</span> | <span className="card__fahrenheit" >°F</span> 
+                            </span>
+                        </span>
                     </div>
                 </div>
                 <div className="card__box card__box--after">
                     <div className="card__box-wrapper">
                         <span className="card__box-info">Depois de amanhã </span>
-                        <span className="card__box-info">{Math.ceil(listProps.temp2)}° <span onClick={() => ChangeMeters('imperial')}>{whitchUnit}</span></span>
+                        <span className="card__box-info">{Math.ceil(listProps.temp2)}° 
+                        <span className={`card__meters card__meters--${whitchUnit}`} onClick={() => ChangeMeters()}> 
+                            <span className="card__celsius"> °C</span> | <span className="card__fahrenheit" >°F</span> 
+                            </span>
+                        </span>
                     </div>
                 </div>
             </div>
