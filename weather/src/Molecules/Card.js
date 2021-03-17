@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../Molecules/ThemeContext'
 
-function Card( {cityName, list}) {
-    const { theme, ChangeMeters, whitchUnit } = useContext(ThemeContext);
+function Card( {list}) {
+    const { theme, city, ChangeMeters, whitchUnit } = useContext(ThemeContext);
     const listProps = {
         temp: list[0]?.main?.temp,
         temp1: list[1]?.main?.temp,
@@ -16,7 +16,14 @@ function Card( {cityName, list}) {
         <div className={`card card--${theme}`}>
             <div className="card__wrapper">
                 <div className="card__city-info">
-                    <span className="card__city-icon"> </span> {cityName}
+                    { city ?
+                        <div className="card__city-wrapper">
+                            <span className="card__city-icon"> </span> {city}
+                        </div>: 
+                        <div className="card__city-wrapper">
+                            <span className="card__city-icon"> </span> Cidade não encontrada!
+                        </div>
+                    }
                 </div>
                 <div className="card__content-info">
                     <div className="card__icon"></div>

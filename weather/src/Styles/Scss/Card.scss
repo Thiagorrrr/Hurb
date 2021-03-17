@@ -143,8 +143,6 @@
     }
 
     &__city-info {
-        display: flex;
-        align-items: center;
         background-color: $color-grey-lighter;
         padding: rem(20);
         font-size: rem(16);
@@ -152,6 +150,10 @@
         @media #{$global-break-md}{
             font-size: rem(20);
         }
+    }
+    &__city-wrapper {
+        display: flex;
+        align-items: center;
     }
 
     &__city-icon:before {

@@ -13,6 +13,7 @@ function Weather() {
     const [units, setUnits] = useState('metric');
     const [whitchUnit, setwhitchUnit] = useState('celsius');
     const [hasError, setHasError] = useState(false);
+    const [hasErrorWeather, setHasErrorWeather] = useState(false);
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
     //const KEY = 'c63386b4f77e46de817bdf94f552cddf';
@@ -70,7 +71,7 @@ function Weather() {
                         setLoading(false)
                     })
                     .catch(err => {
-                        setHasError(true)
+                        setHasErrorWeather(true)
                         setLoading(false)
                         console.log(err,'error')
                     })
@@ -124,15 +125,14 @@ function Weather() {
     }
 
     return (
-        <ThemeContext.Provider value={{ theme, ChangeCity, ChangeMeters, whitchUnit }}>
+        <ThemeContext.Provider value={{ theme, city, ChangeCity, ChangeMeters, whitchUnit }}>
             <div className='weather'>
                 <div className="weather__wrapper">
                     <>
                         <Search />
                         {
-                            !hasError && !loading ?
+                            !loading ?
                                 <Card
-                                    cityName={dataWeather?.city?.name}
                                     list={dataWeather?.list || ''}
                                 /> 
                             : <CardShimmer/>
