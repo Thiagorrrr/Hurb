@@ -55,6 +55,10 @@
         .card__box--after{
             background-color: $color-grey-dark;
         }
+        .card__box-wrapper,
+        .card__text-box {
+            display: none;
+        }
         .card__icon:before {
             color: $color-white;
             font-family: 'MeteoconsRegular';
