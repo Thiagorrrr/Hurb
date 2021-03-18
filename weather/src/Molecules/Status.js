@@ -1,0 +1,28 @@
+import React, { useContext } from 'react';
+import StatusItem from '../Atons/StatusItem';
+import { ThemeContext } from '../Molecules/ThemeContext'
+
+function Card() {
+    const { tempStatus } = useContext(ThemeContext);
+
+    return (
+
+        <div className="status">
+            {
+                tempStatus.map((item, index) =>
+
+                    <StatusItem
+                        key={index}
+                        classInfo={item.classInfo}
+                        name={item.name}
+                        type={item.type}
+                        unit={item.unit}
+                    />
+                )
+            }
+        </div>
+
+    )
+}
+
+export default Card;

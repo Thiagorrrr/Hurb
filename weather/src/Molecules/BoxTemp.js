@@ -1,19 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeContext } from '../Molecules/ThemeContext'
+import Meters from '../Atons/Meters'
 
 function BoxTemp({temp, setClass, status}) {
-    const { ChangeMeters, whitchUnit } = useContext(ThemeContext);
     return (
      
     <div className={`boxTemp boxTemp--${setClass}`}>
         <div className="boxTemp__wrapper">
             <span className="boxTemp__box-info">{status} </span>
-            <span className="boxTemp__box-info">{Math.ceil(temp)}°
-                <span className={`boxTemp__meters boxTemp__meters--${whitchUnit}`} onClick={() => ChangeMeters()}>
-                    <span className="boxTemp__celsius"> °C</span> | <span className="boxTemp__fahrenheit" >°F</span>
-                </span>
-            </span>
+           <Meters
+                temp={temp}
+           />
         </div>
     </div>
     )

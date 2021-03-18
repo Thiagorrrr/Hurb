@@ -3,8 +3,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    height: auto;
+    height: 100%;
     overflow: scroll;
+    
     @media #{$global-break-md}{
         height: 100vh;
         overflow: hidden;

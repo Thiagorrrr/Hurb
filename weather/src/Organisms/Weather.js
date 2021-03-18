@@ -6,12 +6,12 @@ import CardShimmer from '../Molecules/CardShimmer';
 import Search from '../Molecules/Search';
 
 function Weather() {
-    const [dataWeather, setDataWeather] = useState([]);
-    const [dataList, setDataList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [theme, setTheme] = useState('');
     const [city, setCity] = useState('');
     const [temp, setTemp] = useState('');
+    const [tempCards, setTempCards] = useState({});
+    const [tempStatus, setTempStatus] = useState([]);
     const [units, setUnits] = useState('metric');
     const [whitchUnit, setwhitchUnit] = useState('celsius');
     const [hasErrorWeather, setHasErrorWeather] = useState(false);
@@ -30,29 +30,35 @@ function Weather() {
             }
         }
 
+        // set latitude and longitude
         const PositionCoords = ((position) => {
             setLatitude(position.coords.latitude);
             setLongitude(position.coords.longitude);
         })
 
+        // set default rio de janeiro when error getCurrentPosition set on http or gps
         const GetErroFallBackHttp = () => {
-            // Get latitude, longitude when error getCurrentPosition set on http
             setCity('rio de janeiro');
         }
 
         GetGeoCordenates();
 
         if (latitude !== '' && longitude !== '') {
+            //set loading shimmer
             setLoading(true);
+
             const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${KEY}&pretty=1`;
+
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     setCity(data?.results[0]?.components?.city);
+                    //stop loading shimmer
                     setLoading(false);
                 })
                 .catch(err => {
-                    setLoading(false);
+                     //continue loading shimmer
+                    setLoading(true);
                     console.log(err, 'error');
                 })
         }
@@ -63,24 +69,53 @@ function Weather() {
     useEffect(() => {
         // Get Collect Weather Info API
         const urlWeather = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${units}&cnt=3&lang=pt_br&appid=${APPID}`;
-        console.log(urlWeather, 'url final');
-
+    
         if (city !== '' && units !== '') {
+            //set loading shimmer
             setLoading(true);
+
             const CollectWeatherInfo = () => {
                 fetch(urlWeather)
                     .then(res => res.json())
                     .then(dataWeather => {
-                        setDataWeather(dataWeather)
-                        setDataList(dataWeather?.list || '')
                         setTemp(dataWeather.list[0].main.temp)
+                        setTempCards({
+                            amanha: dataWeather.list[1].main.temp,
+                            depois:  dataWeather.list[2].main.temp
+                        })
+                        setTempStatus([ {
+                                classInfo: 'info',
+                                type: dataWeather?.list[0]?.weather[0]?.description
+                            },
+                            {
+                                classInfo: 'air',
+                                name: 'Vento:',
+                                type: dataWeather?.list[0]?.wind?.speed,
+                                unit: 'Km/h'
+                            },
+                            {
+                                classInfo: 'air',
+                                name: 'Humidade:',
+                                type: dataWeather?.list[0]?.main?.humidity,
+                                unit: '%'
+                            },
+                            {
+                                classInfo: 'air',
+                                name: 'Pressão',
+                                type: dataWeather?.list[0]?.main?.pressure,
+                                unit: 'hPA'
+                            }
+                            
+                        ])
+                        //stop loading shimmer
                         setLoading(false)
                         setHasErrorWeather(false)
                     })
                     .catch(err => {
                         setHasErrorWeather(true)
                         setCity('cidade não encontrada!')
-                        setLoading(false)
+                        //continue loading shimmer
+                        setLoading(true)
                         console.log(err, 'error')
                     })
             }
@@ -133,9 +168,9 @@ function Weather() {
             setwhitchUnit('celsius')
         }
     }
-
+    
     return (
-        <ThemeContext.Provider value={{ theme, city, dataList, ChangeCity, ChangeMeters, whitchUnit }}>
+        <ThemeContext.Provider value={{ theme, city, temp, whitchUnit, tempCards, tempStatus, ChangeCity, ChangeMeters }}>
             <div className='weather'>
                 <div className="weather__wrapper">
                     <>
@@ -156,10 +191,11 @@ Weather.propTypes = {
     ThemeContext: PropTypes.shape({
         theme: PropTypes.string,
         city: PropTypes.string,
-        dataList: PropTypes.array,
+        whitchUnit: PropTypes.string,
+        tempCards: PropTypes.object,
+        tempStats: PropTypes.object,
         ChangeCity: PropTypes.func,
         ChangeMeters: PropTypes.func,
-        whitchUnit: PropTypes.string
     })
 }
 

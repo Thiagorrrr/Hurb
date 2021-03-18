@@ -10,6 +10,7 @@ function App() {
   const divStyle = {
     backgroundImage:`url('${host}${data.url})`,
   };
+
   useEffect(() => {
     const url = `${host}HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`;
     
@@ -18,6 +19,7 @@ function App() {
       .then(data => setData( data.images[0] ))
       .catch(err => setHasError(true))
   }, [])
+  
   return (
     <>
       { hasError !== true && data.url ?

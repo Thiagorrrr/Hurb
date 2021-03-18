@@ -19,7 +19,7 @@ function Search() {
   const { ChangeCity } = useContext(ThemeContext);
 
   const SetEnterSearch = (e) => {
-
+    // This funcion validates if onKeyPress (button Enter) is invalid
     setValidate(true);
     setTimeout(()=>{
       if (!notValidate) {
@@ -30,7 +30,8 @@ function Search() {
     }, 500)
   }
 
-  useEffect(()=>{
+  useEffect(()=> {
+    // This funcion validates the input, just letters
     const ValidateInput = () => {
       const regex = /^[a-záàâãéèêíïóôõöúçñ ]+$/i;
       regex.test(inputCity) && inputValue.length > 0 ? setNotValidate(false) : setNotValidate(true); 
