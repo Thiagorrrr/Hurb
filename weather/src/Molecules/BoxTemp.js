@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { ThemeContext } from '../Molecules/ThemeContext'
 
 function BoxTemp({temp, setClass, status}) {
@@ -17,5 +18,10 @@ function BoxTemp({temp, setClass, status}) {
     </div>
     )
 }
+BoxTemp.propTypes = {
+    temp: PropTypes.number,
+    setClass: PropTypes.string,
+    status: PropTypes.string,
+  };
 
 export default BoxTemp;

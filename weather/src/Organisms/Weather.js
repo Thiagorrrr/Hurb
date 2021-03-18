@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { ThemeContext, themes } from '../Molecules/ThemeContext';
 import Card from '../Molecules/Card';
 import CardShimmer from '../Molecules/CardShimmer';
@@ -16,10 +17,10 @@ function Weather() {
     const [hasErrorWeather, setHasErrorWeather] = useState(false);
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
-    const KEY = 'c63386b4f77e46de817bdf94f552cddf';
+    //const KEY = 'c63386b4f77e46de817bdf94f552cddf';
     // const APPID = '7ba73e0eb8efe773ed08bfd0627f07b8';
-    //const KEY = '62f9f45570254385ae294f19d37ba5b7';
-    const APPID = '3e18562bfab1ec174ab53232891ca4e4';
+    const KEY = '62f9f45570254385ae294f19d37ba5b7';
+    const APPID = '6131be3cdf2a63f5583433d892c2f94f';
 
     useEffect(() => {
         // Get Geo Cordenates API
@@ -149,6 +150,17 @@ function Weather() {
             </div>
         </ThemeContext.Provider>
     )
+}
+
+Weather.propTypes = {
+    ThemeContext: PropTypes.shape({
+        theme: PropTypes.string,
+        city: PropTypes.string,
+        dataList: PropTypes.array,
+        ChangeCity: PropTypes.func,
+        ChangeMeters: PropTypes.func,
+        whitchUnit: PropTypes.string
+    })
 }
 
 export default Weather;
