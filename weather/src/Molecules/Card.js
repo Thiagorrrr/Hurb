@@ -1,16 +1,18 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../Molecules/ThemeContext'
+import BoxTemp from './BoxTemp';
 
-function Card({ list }) {
-    const { theme, city, ChangeMeters, whitchUnit } = useContext(ThemeContext);
+function Card() {
+    const { dataList, theme, city, ChangeMeters, whitchUnit } = useContext(ThemeContext);
+
     const listProps = {
-        temp: list[0]?.main?.temp,
-        temp1: list[1]?.main?.temp,
-        temp2: list[2]?.main?.temp,
-        description: list[0]?.weather[0]?.description,
-        speed: list[0]?.wind?.speed,
-        humidity: list[0]?.main?.humidity,
-        pressure: list[0]?.main?.pressure,
+        temp: dataList[0]?.main?.temp,
+        temp1: dataList[1]?.main?.temp,
+        temp2: dataList[2]?.main?.temp,
+        description: dataList[0]?.weather[0]?.description,
+        speed: dataList[0]?.wind?.speed,
+        humidity: dataList[0]?.main?.humidity,
+        pressure: dataList[0]?.main?.pressure,
     }
     return (
         <div className={`card card--${theme}`}>
@@ -33,32 +35,22 @@ function Card({ list }) {
                         </div>
                         <div className="card__status-box">
                             <span className="card__status-info">{listProps.description} </span>
-                            <span className="card__status-air">vento:<span> {listProps.speed} km/h</span> </span>
+                            <span className="card__status-air">Vento:<span> {listProps.speed} km/h</span> </span>
                             <span className="card__status-air">Humidade:<span> {listProps.humidity}%</span> </span>
                             <span className="card__status-air">Pressão: <span> {listProps.pressure}hPA</span> </span>
                         </div>
                     </div>
                 </div>
-                <div className="card__box card__box--tomorrow">
-                    <div className="card__box-wrapper">
-                        <span className="card__box-info">Amanhã </span>
-                        <span className="card__box-info">{Math.ceil(listProps.temp1)}°
-                            <span className={`card__meters card__meters--${whitchUnit}`} onClick={() => ChangeMeters()}>
-                                <span className="card__celsius"> °C</span> | <span className="card__fahrenheit" >°F</span>
-                            </span>
-                        </span>
-                    </div>
-                </div>
-                <div className="card__box card__box--after">
-                    <div className="card__box-wrapper">
-                        <span className="card__box-info">Depois de amanhã </span>
-                        <span className="card__box-info">{Math.ceil(listProps.temp2)}°
-                        <span className={`card__meters card__meters--${whitchUnit}`} onClick={() => ChangeMeters()}>
-                                <span className="card__celsius"> °C</span> | <span className="card__fahrenheit" >°F</span>
-                            </span>
-                        </span>
-                    </div>
-                </div>
+                <BoxTemp
+                    setClass='tomorrow'
+                    status="amanhã"
+                    temp={listProps.temp1}
+                />
+                <BoxTemp
+                    setClass='after'
+                    status="depois de amanhã"
+                    temp={listProps.temp2}
+                />
             </div>
 
         </div>

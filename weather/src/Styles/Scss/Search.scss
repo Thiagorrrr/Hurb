@@ -1,5 +1,5 @@
 .search {
-    padding: 0 0 rem(40) 0;
+    padding: 0 0 rem(20) 0;
 
     &__label {
         display: flex;
@@ -8,6 +8,10 @@
         height: 100%;
         padding: rem(10) rem(20);
         border: rem(1) solid $color-white;
+
+        &--error {
+            border: rem(1) solid $color-red;
+        }
     }
 
     &__input {
@@ -25,5 +29,10 @@
         background: transparent;
         box-shadow: none;
         border: 0;
+    }
+    &__error {
+        display: block;
+        color: $color-red;
+        margin-top: rem(5);
     }
 }

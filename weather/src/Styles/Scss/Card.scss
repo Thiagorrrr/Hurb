@@ -4,9 +4,12 @@
 
     &__content-info {
         display: flex;
+        flex-direction: column;
         padding: rem(20);
 
         @media #{$global-break-md} {
+            padding: 0 rem(20);
+            flex-direction: row;
             align-items: center;
         }
     }
@@ -15,40 +18,53 @@
         width: 50%;
     }
 
-    &__box,
     &__text-box {
         color: $color-white;
+        margin: 0 auto;
+        width: 100%;
+
+        @media #{$global-break-md} {
+            width: auto;
+            margin: 0;
+        }
     }
 
     &__today {
         padding-bottom: rem(20);
     }
 
-    &__box-info,
     &__today-info,
     &__status-info,
     &__status-air {
         display: block;
         font-weight: bold;
         padding-bottom: rem(5);
+        text-align: center;
+
+        @media #{$global-break-md} {
+            text-align: left;
+        }
     }
     &__status-info
     &__status-air {   
         padding: rem(1);
     }
     &__status-info {
-        font-size: rem(16);
-        @media #{$global-break-md}{
+        font-size: rem(18);
+        
+        @media #{$global-break-md} {
             font-size: rem(20);
         }
     }
     &__today-info {
         text-transform: uppercase;
         font-weight: bold;
-        font-size: rem(16);
+        font-size: rem(18);
+        text-align: center;
 
-        @media #{$global-break-md}{
+        @media #{$global-break-md} {
             font-size: rem(20);
+            text-align: left;
         }
     }
     &__icon {
@@ -66,13 +82,13 @@
         .card__content-info {
             background-color: $color-grey-light;
         }
-        .card__box--tomorrow {
+        .boxTemp--tomorrow {
             background-color: $color-grey-medium;
         }
-        .card__box--after{
+        .boxTemp--after {
             background-color: $color-grey-dark;
         }
-        .card__box-wrapper,
+        .boxTemp__wrapper,
         .card__text-box {
             display: none;
         }
@@ -87,10 +103,10 @@
         .card__content-info {
             background-color: $color-yellow-light;
         }
-        .card__box--tomorrow {
+        .boxTemp--tomorrow {
             background-color: $color-yellow-medium;
         }
-        .card__box--after{
+        .boxTemp--after{
             background-color: $color-yellow-dark;
         }
         .card__icon:before {
@@ -103,10 +119,10 @@
         .card__content-info {
             background-color: $color-red-light;
         }
-        .card__box--tomorrow {
+        .boxTemp--tomorrow {
             background-color: $color-red-medium;
         }
-        .card__box--after{
+        .boxTemp--after{
             background-color: $color-red-dark;
         }
         .card__icon:before {
@@ -120,10 +136,10 @@
         .card__content-info {
             background-color: $color-blue-light;
         }
-        .card__box--tomorrow {
+        .boxTemp--tomorrow {
             background-color: $color-blue-medium;
         }
-        .card__box--after{
+        .boxTemp--after{
             background-color: $color-blue-dark;
         }
         .card__icon:before {
@@ -133,19 +149,13 @@
         }
     }
 
-    &__box {
-        display: flex;
-        justify-content: flex-end;
-        padding: rem(10) 0;
-    }
-    &__box-wrapper{
-        width: 50%;
-    }
-
     &__city-info {
         background-color: $color-grey-lighter;
         padding: rem(20);
         font-size: rem(16);
+        text-transform: uppercase;
+        font-weight: bold;
+        color: $color-grey-dark;
 
         @media #{$global-break-md}{
             font-size: rem(20);

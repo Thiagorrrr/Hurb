@@ -4,10 +4,10 @@
     align-items: center;
     position: relative;
     height: 100%;
-    padding-top: rem(20);
-
+    margin-top: rem(20);
+    
     @media #{$global-break-md}{
-        padding-top: 0;
+        align-items: center;
     }
 
     &__wrapper {
@@ -17,7 +17,6 @@
 
         @media #{$global-break-md}{
             max-width: 500px;
-            height: 500px;
         }
     }
 }

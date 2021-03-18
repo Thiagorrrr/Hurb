@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { ThemeContext } from './ThemeContext'
 import debounce from "lodash.debounce";
 import SearchIcon from "../svg/SearchIcon";
@@ -7,9 +7,11 @@ function Search() {
   const [inputCity, setInputCity] = useState("");
   const sendValue = (value) => setInputCity(value);
   const [inputValue, setInputValue] = useState("");
+  const [notValidate, setNotValidate] = useState(false);
+  const [validate, setValidate] = useState(false);
 
   // debounce input
-  const delayedValue = useRef(debounce(value => sendValue(value), 300)).current;
+  const delayedValue = useRef(debounce(value => sendValue(value), 100)).current;
   const onChange = e => {
     setInputValue(e.target.value);
     delayedValue(e.target.value);
@@ -17,23 +19,40 @@ function Search() {
   const { ChangeCity } = useContext(ThemeContext);
 
   const SetEnterSearch = (e) => {
+
+    setValidate(true);
     setTimeout(()=>{
-      if (e.key === 'Enter') {
-        ChangeCity(inputCity)
+      if (!notValidate) {
+        if (e.key === 'Enter') {
+          ChangeCity(inputCity)
+        } 
       }
     }, 500)
-    
   }
+
+  useEffect(()=>{
+    const ValidateInput = () => {
+      const regex = /^[a-záàâãéèêíïóôõöúçñ ]+$/i;
+      regex.test(inputCity) && inputValue.length > 0 ? setNotValidate(false) : setNotValidate(true); 
+    }
+    if (validate) ValidateInput()
+    
+  },[inputCity, inputValue, validate])
+  
   return (
     <div className="search">
-      <label className="search__label">
-        <input className="search__input" type="text" placeholder="Nome da cidade" onChange={onChange} value={inputValue} onKeyPress={event => SetEnterSearch(event)} required />
+      <label className={`search__label ${(notValidate ? "search__label--error" : "")}`}>
+        <input className="search__input" type="text" placeholder="Cidade" onChange={onChange} value={inputValue} onKeyPress={event => SetEnterSearch(event)} />
         <button className="search__btn"
-          onClick={() => ChangeCity(inputCity)}
+          onClick={() => ChangeCity(inputCity, !notValidate) }
         >
           <SearchIcon />
         </button>
       </label>
+      {
+        notValidate ? 
+        <span className="search__error"> Por favor digite o nome de uma cidade </span>: null
+      }
     </div>
   )
 }

@@ -6,23 +6,19 @@ import Search from '../Molecules/Search';
 
 function Weather() {
     const [dataWeather, setDataWeather] = useState([]);
+    const [dataList, setDataList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [theme, setTheme] = useState('');
     const [city, setCity] = useState('');
     const [temp, setTemp] = useState('');
     const [units, setUnits] = useState('metric');
     const [whitchUnit, setwhitchUnit] = useState('celsius');
-    const [hasError, setHasError] = useState(false);
     const [hasErrorWeather, setHasErrorWeather] = useState(false);
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
     //const KEY = 'c63386b4f77e46de817bdf94f552cddf';
     const KEY = '62f9f45570254385ae294f19d37ba5b7';
     const APPID = '7ba73e0eb8efe773ed08bfd0627f07b8';
-
-
-                
-
 
     useEffect(() => {
         // Get Geo Cordenates API
@@ -39,7 +35,7 @@ function Weather() {
 
         const GetErroFallBackHttp = () => {
             // Get latitude, longitude when error getCurrentPosition set on http
-            setCity('rio de janeiro')
+            setCity('rio de janeiro');
         }
 
         GetGeoCordenates();
@@ -54,7 +50,6 @@ function Weather() {
                     setLoading(false);
                 })
                 .catch(err => {
-                    setHasError(true);
                     setLoading(false);
                     console.log(err, 'error');
                 })
@@ -75,8 +70,10 @@ function Weather() {
                     .then(res => res.json())
                     .then(dataWeather => {
                         setDataWeather(dataWeather)
+                        setDataList(dataWeather?.list || '')
                         setTemp(dataWeather.list[0].main.temp)
                         setLoading(false)
+                        setHasErrorWeather(false)
                     })
                     .catch(err => {
                         setHasErrorWeather(true)
@@ -118,8 +115,10 @@ function Weather() {
     }, [temp, whitchUnit, hasErrorWeather])
 
     // change city parameters api
-    const ChangeCity = (value) => {
-        setCity(value);
+    const ChangeCity = (value, status) => {
+        if (status !== false){
+            setCity(value)
+        }
     }
 
     // change units parameters api
@@ -134,16 +133,14 @@ function Weather() {
     }
 
     return (
-        <ThemeContext.Provider value={{ theme, city, ChangeCity, ChangeMeters, whitchUnit }}>
+        <ThemeContext.Provider value={{ theme, city, dataList, ChangeCity, ChangeMeters, whitchUnit }}>
             <div className='weather'>
                 <div className="weather__wrapper">
                     <>
                         <Search />
                         {
                             !loading ?
-                                <Card
-                                    list={dataWeather?.list || ''}
-                                />
+                                <Card/>
                                 : <CardShimmer />
                         }
                     </>

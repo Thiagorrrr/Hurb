@@ -1,0 +1,52 @@
+.boxTemp { 
+    color: $color-white;
+    display: flex;
+    justify-content: flex-end;
+    padding: rem(10) 0;
+
+    &__wrapper{
+        width: 100%;
+        padding-bottom: rem(10);
+
+        @media #{$global-break-md} {
+            width: 50%;
+            align-items: center;
+        }
+    }
+
+    &__box-info{
+        display: block;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding-bottom: rem(5);
+        font-size: rem(16);
+        text-align: center;
+
+        @media #{$global-break-md} {
+            font-size: rem(20);
+            text-align: left;
+        }
+    }
+    &__celsius,
+    &__fahrenheit {
+        font-size: rem(12);
+        font-weight: normal;
+    }
+
+    &__meters {
+        cursor: pointer;
+        margin-left: rem(5);
+        &--celsius {
+            .boxTemp__celsius {
+                font-size: rem(20);
+                font-weight: bold;
+            }
+        }
+        &--fahrenheit {
+            .boxTemp__fahrenheit {
+                font-size: rem(20);
+                font-weight: bold;
+            }
+        }
+    } 
+}
