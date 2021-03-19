@@ -61,6 +61,6 @@ it("renders StatusItems data", () => {
     });
 
     expect(container.querySelector(".status__info").textContent).toBe(
-        PropsTypes.name+ ' ' + PropsTypes.type + PropsTypes.info + ' ' + PropsTypes.unit + ' '
+       `${PropsTypes.name} ${PropsTypes.type} ${PropsTypes.info}${PropsTypes.unit} `
     );
 });
