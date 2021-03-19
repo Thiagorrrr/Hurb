@@ -58,7 +58,7 @@ function Weather() {
                 })
                 .catch(err => {
                      //continue loading shimmer
-                    setLoading(true);
+                    setLoading(false);
                     console.log(err, 'error');
                 })
         }
@@ -115,7 +115,7 @@ function Weather() {
                         setHasErrorWeather(true)
                         setCity('cidade não encontrada!')
                         //continue loading shimmer
-                        setLoading(true)
+                        setLoading(false)
                         console.log(err, 'error')
                     })
             }
