@@ -8,7 +8,7 @@ function CityInfo() {
     return (
         <div className="cityInfo">
             <div className="cityInfo__wrapper">
-                <span className="cityInfo__icon"> </span> {city}
+                <span className="cityInfo__icon"></span>{city}
             </div>
         </div>
     )
