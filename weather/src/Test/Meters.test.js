@@ -1,6 +1,6 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
-
+import { ThemeContext } from "../Molecules/ThemeContext";
 import { act } from "react-dom/test-utils";
 import pretty from "pretty";
 
@@ -29,11 +29,22 @@ it("should render Meters with no props", () => {
     ); /* ... gets filled automatically by jest ... */
 });
 
-it("should render Meters props temp", () => {
+it("should render Meters props temp, whitchUnit", () => {
+    const propsTypes = {
+        temp: 32,
+    };
+
+    const whitchUnit = "celsius";
+
     act(() => {
-        render(<Meters temp={32} />, container);
+        render(
+            <ThemeContext.Provider value={{ whitchUnit }}>
+                <Meters temp={propsTypes.temp} />
+            </ThemeContext.Provider>,
+            container
+        );
     });
     expect(pretty(container.innerHTML)).toMatchInlineSnapshot(
-        `"<div class=\\"meters\\"><span class=\\"meters__box-info\\">32<span class=\\"meters__unit meters__unit--undefined\\"><span class=\\"meters__celsius\\"> °C</span> | <span class=\\"meters__fahrenheit\\">°F</span></span></span></div>"`
+        `"<div class=\\"meters\\"><span class=\\"meters__box-info\\">32<span class=\\"meters__unit meters__unit--celsius\\"><span class=\\"meters__celsius\\"> °C</span> | <span class=\\"meters__fahrenheit\\">°F</span></span></span></div>"`
     ); /* ... gets filled automatically by jest ... */
 });

@@ -8,7 +8,7 @@ import pretty from "pretty";
 let container = null;
 beforeEach(() => {
     // setup a DOM element as a render target
-    container = document.createElement('div');
+    container = document.createElement("div");
     document.body.appendChild(container);
 });
 
@@ -24,12 +24,17 @@ it("should render CityInfo if has city name", () => {
 
     act(() => {
         render(
-            <ThemeContext.Provider value={{city}}>
+            <ThemeContext.Provider value={{ city }}>
                 <CityInfo />
-            </ThemeContext.Provider>, container
+            </ThemeContext.Provider>,
+            container
         );
     });
 
-
     expect(container.textContent).toBe(city);
+    expect(pretty(container.innerHTML)).toMatchInlineSnapshot(`
+        "<div class=\\"cityInfo\\">
+          <div class=\\"cityInfo__wrapper\\"><span class=\\"cityInfo__icon\\"></span>rio de janeiro</div>
+        </div>"
+    `); /* ... gets filled automatically by jest ... */
 });
