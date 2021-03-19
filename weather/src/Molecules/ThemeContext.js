@@ -5,8 +5,10 @@ export const themes = {
     sunny: 'sunny',
     normal: 'normal',
     cold: 'cold',
+    ChangeCity: () => ({}),
+    ChangeMeters: () => ({}),
   };
   
   export const ThemeContext = createContext(
-    themes.noInfo
+    themes
   );

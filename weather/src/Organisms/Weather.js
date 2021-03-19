@@ -85,7 +85,7 @@ function Weather() {
                         })
                         setTempStatus([ {
                                 classInfo: 'info',
-                                type: dataWeather?.list[0]?.weather[0]?.description
+                                info: dataWeather?.list[0]?.weather[0]?.description
                             },
                             {
                                 classInfo: 'air',
@@ -138,7 +138,7 @@ function Weather() {
         };
 
         if (hasErrorWeather || temp === '') {
-            setTheme(ThemeContext._currentValue)
+            setTheme(themes.noInfo)
         } else {
             if (temp <= parametersUnits[whitchUnit].cold) {
                 setTheme(themes.cold);

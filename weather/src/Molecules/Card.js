@@ -44,7 +44,7 @@ function Card() {
 Card.propTypes = {
     ThemeContext: PropTypes.shape({
         theme: PropTypes.string,
-        temp: PropTypes.number,
+        temp: PropTypes.string,
         whitchUnit: PropTypes.string,
         tempCards: PropTypes.object,
         

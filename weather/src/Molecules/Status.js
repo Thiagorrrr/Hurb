@@ -15,6 +15,7 @@ function Card() {
                         key={index}
                         classInfo={item.classInfo}
                         name={item.name}
+                        info={item.info}
                         type={item.type}
                         unit={item.unit}
                     />
