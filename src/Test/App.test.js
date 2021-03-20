@@ -1,6 +1,5 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
-import { shallow } from 'enzyme';
 import { act } from "react-dom/test-utils";
 import pretty from "pretty";
 
