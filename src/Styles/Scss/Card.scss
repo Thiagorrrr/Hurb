@@ -70,6 +70,8 @@
     &__icon {
         font-size: rem(120);
         margin: 0 auto;
+        display: flex;
+        justify-content: center;
 
         @media #{$global-break-md}{
             font-size: rem(200);

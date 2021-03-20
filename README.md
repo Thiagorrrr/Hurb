@@ -50,10 +50,10 @@ this site use three types of apis:
 3. [opencage](https://api.opencagedata.com/geocode/v1/json?q=%7B%7Blatitude%7D%7D,%7B%7Blongitude%7D%7D&key=c63386b4f77e46de817bdf94f552cddf&language=en)
 
 ### background at Bing
-this api was used to adding a background image
+this api was used to adding a ```background-image```
     
 ### OpenWeather
-this api was used to convert latitude and longitude in an available city
+this api was used to convert ```latitude``` and ```longitude``` in an available city
 
 ### Opencage
 this api was used to see the weather forecast.
@@ -65,4 +65,21 @@ this api was used to see the weather forecast.
 
 ### Desktop
 <img width="1437" alt="Captura de Tela 2021-03-20 às 02 32 57" src="https://user-images.githubusercontent.com/19389360/111860270-43d8a980-8925-11eb-97ee-a653ba422b17.png">
+
+## Layout Validation
+
+### Search input values
+There are two validations important for user, an is search ```with no value``` or ```invalid properts```.
+
+
+### Not found city
+When the user set a city name invalid, this mensage is called. ```Cidade não encontrada!```
+
+<img width="346" alt="Captura de Tela 2021-03-20 às 02 59 36" src="https://user-images.githubusercontent.com/19389360/111861065-29ed9580-892a-11eb-9f1f-f7d3faa28026.png">
+
+### Loading with Shimmer
+When card is loading the component ```CardShimmer```. Instead of showing a loading icon we could have a sample layout of our app which indicates how and where our content gets placed when that is fully loaded.
+
+<img width="365" alt="Captura de Tela 2021-03-20 às 03 00 24" src="https://user-images.githubusercontent.com/19389360/111861137-d6c81280-892a-11eb-9cbc-
+
 
