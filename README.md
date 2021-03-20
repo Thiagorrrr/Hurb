@@ -31,3 +31,10 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+## Resolving some problems
+
+If you browser is runner with http or the API does not used Access-Control-Allow-Origin: '*'. This can be resolved with the extension [Allow CORS: Access-Control-Allow-Origin
+](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) just install and active for resolved that problem.
+
+
