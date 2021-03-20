@@ -71,6 +71,8 @@ this api was used to see the weather forecast.
 ### Search input values
 There are two validations important for user, an is search ```with no value``` or ```invalid properts```.
 
+<img width="354" alt="Captura de Tela 2021-03-20 às 03 00 24" src="https://user-images.githubusercontent.com/19389360/111861258-91581500-892b-11eb-87bd-f68842a90841.png">
+
 
 ### Not found city
 When the user set a city name invalid, this mensage is called. ```Cidade não encontrada!```
