@@ -1,16 +1,19 @@
 .cityInfo {
     background-color: $color-grey-lighter;
     padding: rem(20);
-    font-size: rem(16);
-    text-transform: uppercase;
-    font-weight: bold;
-    color: $color-grey-dark;
 
-    @media #{$global-break-md} {
-        font-size: rem(20);
+    &__title {
+        text-transform: uppercase;
+        font-weight: bold;
+        color: $color-grey-dark;
+        font-size: rem(16);
+        margin: 0;
+        
+        @media #{$global-break-md} {
+            font-size: rem(20);
+        }
     }
 
-     
     &__wrapper {
         display: flex;
         align-items: center;

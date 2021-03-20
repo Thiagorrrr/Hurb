@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import StatusItem from '../Atons/StatusItem';
 import { ThemeContext } from '../Molecules/ThemeContext'
 
-function Card() {
+function Status() {
     const { tempStatus } = useContext(ThemeContext);
 
     return (
@@ -26,4 +26,4 @@ function Card() {
     )
 }
 
-export default Card;
+export default Status;

@@ -8,7 +8,7 @@
         padding: rem(20);
 
         @media #{$global-break-md} {
-            padding: rem(10) rem(20);
+            padding: rem(20);
             flex-direction: row;
             align-items: center;
         }

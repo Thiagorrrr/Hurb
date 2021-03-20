@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Header from './Molecules/Header';
 import Weather from './Organisms/Weather'
 
 import './Styles/Scss/App.scss'
@@ -23,7 +24,8 @@ function App() {
   return (
     <>
       { hasError !== true && data.url ?
-        <main className="main" style={divStyle}> 
+        <main className="main" style={divStyle}>
+          <Header/>
           <Weather/>
         </main> : null
       }
