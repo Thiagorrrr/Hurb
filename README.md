@@ -38,9 +38,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 If you browser is runner with http or the API does not used Access-Control-Allow-Origin: '*'. This can be resolved with the extension [Allow CORS: Access-Control-Allow-Origin
 ](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) just install and active for resolved that problem.
 
-### GPS or Http navigate
-If you browser is runner with http or the API does not used Access-Control-Allow-Origin: '*'. This can be resolved with the extension [Allow CORS: Access-Control-Allow-Origin
-](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) just install and active for resolved that problem.
+### GPS or Http navigator
+ 
+If user or there is a problem with ```navigator.geolocation``` the aplication sets ```Rio de janeiro``` with a default value
 
 ## Apis
 this site use three types of apis:
