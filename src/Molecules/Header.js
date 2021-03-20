@@ -7,7 +7,7 @@ const Header = () => {
                 <div className="header__logo">
                     <Logo />
                 </div>
-                <h1 className="header__title">Weather search city</h1>
+                <h1 className="header__title">Search city weather</h1>
             </div>
         </header>
     )
