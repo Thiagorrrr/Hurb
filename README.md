@@ -1,4 +1,4 @@
-# Hurb Weather search city
+# 🔗[Hurb Weather search city]('https://github.com/Thiagorrrr/Hurb')
 This project was created to research on the temperature of the desired city. Informing the weather today, tomorrow and the day after, visually indicating the temperature either in degrees celsius or fahrenheit.
 
 ## Available Scripts
@@ -34,7 +34,35 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Resolving some problems
 
+### Allow CORS: Access-Control-Allow-Origin
 If you browser is runner with http or the API does not used Access-Control-Allow-Origin: '*'. This can be resolved with the extension [Allow CORS: Access-Control-Allow-Origin
 ](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) just install and active for resolved that problem.
 
+### GPS or Http navigate
+If you browser is runner with http or the API does not used Access-Control-Allow-Origin: '*'. This can be resolved with the extension [Allow CORS: Access-Control-Allow-Origin
+](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) just install and active for resolved that problem.
+
+## Apis
+this site use three types of apis:
+
+1. [Background at Bing.](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR)
+2. [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q=%7B%7Blocation_name%7D%7D&APPID=7ba73e0eb8efe773ed08bfd0627f07b8)
+3. [opencage](https://api.opencagedata.com/geocode/v1/json?q=%7B%7Blatitude%7D%7D,%7B%7Blongitude%7D%7D&key=c63386b4f77e46de817bdf94f552cddf&language=en)
+
+### background at Bing
+this api was used to adding a background image
+    
+### OpenWeather
+this api was used to convert latitude and longitude in an available city
+
+### Opencage
+this api was used to see the weather forecast.
+
+## Check layout view 
+
+### Mobile
+<img width="236" alt="Captura de Tela 2021-03-20 às 02 33 54" src="https://user-images.githubusercontent.com/19389360/111860227-fc521d80-8924-11eb-85a7-2c1bb0d701f3.png">
+
+### Desktop
+<img width="1437" alt="Captura de Tela 2021-03-20 às 02 32 57" src="https://user-images.githubusercontent.com/19389360/111860270-43d8a980-8925-11eb-97ee-a653ba422b17.png">
 
