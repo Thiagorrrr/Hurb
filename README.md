@@ -86,7 +86,7 @@ When card is loading the component ```CardShimmer```. Instead of showing a loadi
 
 ## Docker image
 
-Link to, [docker](public.ecr.aws/n6a9a7w8/hurb-stage)
+Link to, link ```public.ecr.aws/n6a9a7w8/hurb-stage```
 
 ## Site
 
