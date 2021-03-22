@@ -87,4 +87,4 @@ When card is loading the component ```CardShimmer```. Instead of showing a loadi
 
 ## Site
 
-Link to, [Hurb Weather search city](https://605598d354783c54a41b7697--nervous-benz-289225.netlify.app/)
+Link to, [Hurb Weather search city](https://nervous-benz-289225.netlify.app/)
